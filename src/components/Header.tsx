@@ -19,9 +19,9 @@ const Header = () => {
   const { user, logout, isAuthenticated } = useAuth();
 
   const navItems = [
-    { name: 'BROWSE CUMPANIONS', href: '/companions' },
+    { name: 'FIND ATTORNEYS', href: '/attorneys' },
     { name: 'BROWSE BY LOCATION', href: '/locations' },
-    { name: 'CUMMUNITY GUIDELINES', href: '/about' },
+    { name: 'ABOUT US', href: '/about' },
     { name: 'CONTACT SUPPORT', href: '/contact' },
   ];
 
@@ -36,17 +36,10 @@ const Header = () => {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <div className="flex-shrink-0">
-             <Link to="/" className="block" aria-label="Cumpani home">
-              <img
-                src="/cumpaniblk.svg"
-                alt="Cumpani"
-                className="w-[200px] h-auto dark:hidden"
-              />
-              <img
-                src="/cumpaniwht.svg"
-                alt="Cumpani"
-                className="hidden w-[200px] h-auto dark:block"
-              />
+             <Link to="/" className="block" aria-label="Monogamy home">
+              <h1 className="text-2xl font-heading font-bold text-foreground">
+                Monogamy
+              </h1>
             </Link>
           </div>
 
