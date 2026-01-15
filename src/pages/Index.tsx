@@ -20,7 +20,7 @@ const Index = () => {
           <div className="container-blog">
             <div className="max-w-4xl mx-auto text-center space-y-6">
               <h1 className="text-5xl md:text-6xl font-heading font-bold text-foreground animate-slide-in">
-                Africa's Leading Legal Services Platform
+                Pioneering the Next-Generation of World-Class Legal Services in Africa
               </h1>
               <p className="text-xl text-muted-foreground">
                 Connect with licensed legal practitioners, verified attorneys, and reputable law firms across various areas of legal expertise throughout Africa. 
