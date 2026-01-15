@@ -2,9 +2,9 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Award, DollarSign, Calendar, Shield, Settings, MessageSquare, TrendingUp, CheckCircle } from 'lucide-react';
+import { Award, Briefcase, Calendar, Shield, Settings, MessageSquare, TrendingUp, CheckCircle, Scale, GraduationCap } from 'lucide-react';
 
-const BecomeCompanion = () => {
+const BecomeAttorney = () => {
   return (
     <div className="min-h-screen bg-background">
       <Header />
@@ -13,27 +13,27 @@ const BecomeCompanion = () => {
         <div className="max-w-4xl mx-auto">
           {/* Hero Section */}
           <div className="text-center mb-16">
-            <Award className="w-20 h-20 text-primary mx-auto mb-6" />
-            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-              Become A Cumpanion
+            <Scale className="w-20 h-20 text-primary mx-auto mb-6" />
+            <h1 className="font-heading text-4xl md:text-5xl font-bold text-foreground mb-4">
+              Become an Attorney Partner
             </h1>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Join South Africa's premier cumpanionship platform. Build your business, set your schedule, 
-              and connect with verified clients in a safe, professional environment.
+              Join Africa's premier legal services platform. Build your practice, connect with verified clients, 
+              and expand your professional network in a secure, professional environment.
             </p>
           </div>
 
           {/* Benefits Section */}
           <div className="mb-16">
-            <h2 className="text-3xl font-bold text-center mb-12">Why Join Cumpani?</h2>
+            <h2 className="font-heading text-3xl font-bold text-center mb-12">Why Join Our Platform?</h2>
             <div className="grid md:grid-cols-2 gap-8">
               <Card className="hover:shadow-lg transition-all duration-300">
                 <CardHeader>
-                  <DollarSign className="w-12 h-12 mb-4 text-primary" />
-                  <CardTitle>Earn On Your Terms</CardTitle>
+                  <TrendingUp className="w-12 h-12 mb-4 text-primary" />
+                  <CardTitle>Grow Your Practice</CardTitle>
                   <CardDescription>
-                    Set your own rates and availability. Keep the majority of your earnings with 
-                    transparent, competitive platform fees.
+                    Access a growing network of clients seeking quality legal services. 
+                    Build your reputation with verified client reviews and ratings.
                   </CardDescription>
                 </CardHeader>
               </Card>
@@ -41,10 +41,10 @@ const BecomeCompanion = () => {
               <Card className="hover:shadow-lg transition-all duration-300">
                 <CardHeader>
                   <Calendar className="w-12 h-12 mb-4 text-primary" />
-                  <CardTitle>Flexible Schedule</CardTitle>
+                  <CardTitle>Flexible Scheduling</CardTitle>
                   <CardDescription>
-                    You're in control. Set your availability, accept or decline bookings, 
-                    and manage your calendar from our easy-to-use dashboard.
+                    Set your own availability and consultation rates. Accept or decline consultation requests 
+                    and manage your calendar with ease.
                   </CardDescription>
                 </CardHeader>
               </Card>
@@ -52,21 +52,21 @@ const BecomeCompanion = () => {
               <Card className="hover:shadow-lg transition-all duration-300">
                 <CardHeader>
                   <Shield className="w-12 h-12 mb-4 text-primary" />
-                  <CardTitle>Safe & Secure</CardTitle>
+                  <CardTitle>Safe & Professional</CardTitle>
                   <CardDescription>
-                    All clients are verified. Payments are processed through our secure virtual wallet. 
-                    Your safety and privacy are our top priorities.
+                    All clients are verified professionals. Secure payment processing and 
+                    confidential client management through our secure platform.
                   </CardDescription>
                 </CardHeader>
               </Card>
 
               <Card className="hover:shadow-lg transition-all duration-300">
                 <CardHeader>
-                  <Settings className="w-12 h-12 mb-4 text-primary" />
-                  <CardTitle>Customize Your Profile</CardTitle>
+                  <Briefcase className="w-12 h-12 mb-4 text-primary" />
+                  <CardTitle>Professional Profile</CardTitle>
                   <CardDescription>
-                    Create a professional profile that showcases your personality and services. 
-                    Set your preferences and boundaries clearly.
+                    Showcase your credentials, specializations, and expertise. 
+                    Highlight your experience and bar admission details.
                   </CardDescription>
                 </CardHeader>
               </Card>
@@ -74,21 +74,21 @@ const BecomeCompanion = () => {
               <Card className="hover:shadow-lg transition-all duration-300">
                 <CardHeader>
                   <MessageSquare className="w-12 h-12 mb-4 text-primary" />
-                  <CardTitle>Direct Communication</CardTitle>
+                  <CardTitle>Direct Client Communication</CardTitle>
                   <CardDescription>
-                    Chat with clients through our secure messaging system. Screen potential bookings 
-                    before accepting.
+                    Chat with potential clients through our secure messaging system. 
+                    Screen consultation requests before accepting.
                   </CardDescription>
                 </CardHeader>
               </Card>
 
               <Card className="hover:shadow-lg transition-all duration-300">
                 <CardHeader>
-                  <TrendingUp className="w-12 h-12 mb-4 text-primary" />
-                  <CardTitle>Grow Your Business</CardTitle>
+                  <Award className="w-12 h-12 mb-4 text-primary" />
+                  <CardTitle>Credibility & Visibility</CardTitle>
                   <CardDescription>
-                    Build your reputation with our review system. Featured profiles get priority 
-                    placement and increased visibility.
+                    Build your professional credibility with verified credentials. 
+                    Featured profiles receive priority placement and increased visibility.
                   </CardDescription>
                 </CardHeader>
               </Card>
@@ -97,35 +97,39 @@ const BecomeCompanion = () => {
 
           {/* Requirements Section */}
           <div className="mb-16 bg-muted p-8 rounded-lg">
-            <h2 className="text-3xl font-bold text-center mb-8">Requirements</h2>
+            <h2 className="font-heading text-3xl font-bold text-center mb-8">Requirements</h2>
             <div className="grid md:grid-cols-2 gap-6">
               <div className="space-y-4">
-                <h3 className="text-xl font-semibold text-foreground">Basic Requirements</h3>
+                <h3 className="font-heading text-xl font-semibold text-foreground">Legal Qualifications</h3>
                 <ul className="space-y-3">
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-1" />
-                    <span className="text-muted-foreground">Must be 18 years or older</span>
+                    <span className="text-muted-foreground">Admitted to practice law in your jurisdiction</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-1" />
-                    <span className="text-muted-foreground">Valid South African ID or proof of legal residence</span>
+                    <span className="text-muted-foreground">Valid law degree (LLB or equivalent)</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-1" />
-                    <span className="text-muted-foreground">Professional photos for profile</span>
+                    <span className="text-muted-foreground">Current practicing license</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-1" />
-                    <span className="text-muted-foreground">Clear background check</span>
+                    <span className="text-muted-foreground">Valid professional identification</span>
                   </li>
                 </ul>
               </div>
               <div className="space-y-4">
-                <h3 className="text-xl font-semibold text-foreground">What We Look For</h3>
+                <h3 className="font-heading text-xl font-semibold text-foreground">What We Look For</h3>
                 <ul className="space-y-3">
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-1" />
-                    <span className="text-muted-foreground">Professional and reliable</span>
+                    <span className="text-muted-foreground">Professional experience and expertise</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-1" />
+                    <span className="text-muted-foreground">Clear specialization areas</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-1" />
@@ -133,11 +137,7 @@ const BecomeCompanion = () => {
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-1" />
-                    <span className="text-muted-foreground">Respectful and discreet</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-1" />
-                    <span className="text-muted-foreground">Commitment to safety and professionalism</span>
+                    <span className="text-muted-foreground">Commitment to client confidentiality and ethics</span>
                   </li>
                 </ul>
               </div>
@@ -146,15 +146,15 @@ const BecomeCompanion = () => {
 
           {/* How It Works Section */}
           <div className="mb-16">
-            <h2 className="text-3xl font-bold text-center mb-12">How It Works</h2>
+            <h2 className="font-heading text-3xl font-bold text-center mb-12">How It Works</h2>
             <div className="grid md:grid-cols-4 gap-8">
               <div className="text-center space-y-4">
                 <div className="w-16 h-16 bg-primary text-primary-foreground rounded-full flex items-center justify-center text-2xl font-bold mx-auto">
                   1
                 </div>
-                <h3 className="text-xl font-semibold">Apply</h3>
+                <h3 className="font-heading text-xl font-semibold">Apply</h3>
                 <p className="text-muted-foreground">
-                  Submit your application with photos and basic information
+                  Submit your application with credentials and professional information
                 </p>
               </div>
 
@@ -162,9 +162,9 @@ const BecomeCompanion = () => {
                 <div className="w-16 h-16 bg-primary text-primary-foreground rounded-full flex items-center justify-center text-2xl font-bold mx-auto">
                   2
                 </div>
-                <h3 className="text-xl font-semibold">Verification</h3>
+                <h3 className="font-heading text-xl font-semibold">Verification</h3>
                 <p className="text-muted-foreground">
-                  Complete our verification process including ID and background check
+                  We verify your credentials, license, and professional standing
                 </p>
               </div>
 
@@ -172,9 +172,9 @@ const BecomeCompanion = () => {
                 <div className="w-16 h-16 bg-primary text-primary-foreground rounded-full flex items-center justify-center text-2xl font-bold mx-auto">
                   3
                 </div>
-                <h3 className="text-xl font-semibold">Set Up Profile</h3>
+                <h3 className="font-heading text-xl font-semibold">Create Your Profile</h3>
                 <p className="text-muted-foreground">
-                  Create your profile, set your rates, and customize your preferences
+                  Set your specializations, consultation rates, and availability
                 </p>
               </div>
 
@@ -182,9 +182,9 @@ const BecomeCompanion = () => {
                 <div className="w-16 h-16 bg-primary text-primary-foreground rounded-full flex items-center justify-center text-2xl font-bold mx-auto">
                   4
                 </div>
-                <h3 className="text-xl font-semibold">Start Earning</h3>
+                <h3 className="font-heading text-xl font-semibold">Start Consulting</h3>
                 <p className="text-muted-foreground">
-                  Go live and start accepting bookings on your schedule
+                  Go live and start accepting consultation requests
                 </p>
               </div>
             </div>
@@ -192,12 +192,12 @@ const BecomeCompanion = () => {
 
           {/* CTA Section */}
           <div className="text-center bg-gradient-to-r from-primary/10 to-primary/5 p-12 rounded-lg">
-            <h2 className="text-3xl font-bold text-foreground mb-4">
-              Ready to Get Started?
+            <h2 className="font-heading text-3xl font-bold text-foreground mb-4">
+              Ready to Join Our Network?
             </h2>
             <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-              Join hundreds of successful cumpanions already earning on Cumpani. 
-              Start your application today and take control of your career.
+              Join hundreds of successful attorneys already growing their practice on our platform. 
+              Start your application today and expand your professional reach.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" className="hover:scale-105 transition-transform">
@@ -216,4 +216,4 @@ const BecomeCompanion = () => {
   );
 };
 
-export default BecomeCompanion;
+export default BecomeAttorney;

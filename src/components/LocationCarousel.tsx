@@ -8,7 +8,7 @@ import {
   CarouselPrevious,
 } from '@/components/ui/carousel';
 import { Card, CardContent } from '@/components/ui/card';
-import { companionProfiles } from '@/data/companions';
+import { attorneyProfiles } from '@/data/attorneys';
 
 interface LocationData {
   city: string;
@@ -70,8 +70,8 @@ const popularLocations: LocationData[] = [
 ];
 
 const LocationCarousel = () => {
-  const getCompanionCountByCity = (city: string) => {
-    return companionProfiles.filter(c => c.city === city).length;
+  const getAttorneyCountByCity = (city: string) => {
+    return attorneyProfiles.filter(c => c.city === city).length;
   };
 
   return (
@@ -85,15 +85,15 @@ const LocationCarousel = () => {
       >
         <CarouselContent className="-ml-2 md:-ml-4">
           {popularLocations.map((location) => {
-            const companionCount = getCompanionCountByCity(location.city);
+            const attorneyCount = getAttorneyCountByCity(location.city);
             return (
               <CarouselItem key={location.city} className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3">
-                <Link to={`/companions?city=${location.city}`} className="block">
+                <Link to={`/attorneys?city=${location.city}`} className="block">
                   <Card className="overflow-hidden group cursor-pointer hover:shadow-xl transition-all duration-300 border-2 hover:border-primary">
                     <div className="relative h-[200px] overflow-hidden">
                       <img
                         src={location.image}
-                        alt={`${location.city} - Browse cumpanions`}
+                        alt={`${location.city} - Browse attorneys`}
                         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                         loading="lazy"
                       />
@@ -106,7 +106,7 @@ const LocationCarousel = () => {
                         <p className="text-sm text-white/90 mb-2">{location.description}</p>
                         <div className="flex items-center text-xs">
                           <Users className="w-4 h-4 mr-1" />
-                          <span>{companionCount} Cumpanions Available</span>
+                          <span>{attorneyCount} Attorneys Available</span>
                         </div>
                       </div>
                     </div>

@@ -29,9 +29,9 @@ const Login = lazy(() => import("./pages/Login"));
 const Signup = lazy(() => import("./pages/Signup"));
 const QuoteRequest = lazy(() => import("./pages/QuoteRequest"));
 const NotFound = lazy(() => import("./pages/NotFound"));
-const Companions = lazy(() => import("./pages/Companions"));
-const CompanionDetail = lazy(() => import("./pages/CompanionDetail"));
-const BecomeCompanion = lazy(() => import("./pages/BecomeCompanion"));
+const Attorneys = lazy(() => import("./pages/Attorneys"));
+const AttorneyDetail = lazy(() => import("./pages/AttorneyDetail"));
+const BecomeAttorney = lazy(() => import("./pages/BecomeAttorney"));
 const Membership = lazy(() => import("./pages/Membership"));
 
 const queryClient = new QueryClient();
@@ -42,7 +42,6 @@ const App = () => (
       <AuthProvider>
         <TooltipProvider>
           <SkipLink />
-          <AgeVerification />
           <AIChatbot />
           <Toaster />
           <Sonner />
@@ -50,9 +49,9 @@ const App = () => (
               <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Loading...</div>}>
                 <Routes>
                   <Route path="/" element={<Index />} />
-                  <Route path="/companions" element={<Companions />} />
-                  <Route path="/companion/:id" element={<CompanionDetail />} />
-                  <Route path="/become-companion" element={<BecomeCompanion />} />
+                  <Route path="/attorneys" element={<Attorneys />} />
+                  <Route path="/attorney/:id" element={<AttorneyDetail />} />
+                  <Route path="/become-attorney" element={<BecomeAttorney />} />
                   <Route path="/membership" element={<Membership />} />
                   <Route path="/posts" element={<AllPosts />} />
                   <Route path="/business" element={<Business />} />
