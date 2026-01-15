@@ -7,14 +7,20 @@ const Footer = () => {
       <div className="container-blog py-12">
         <div className="grid md:grid-cols-4 gap-8">
           <div className="space-y-4">
-            <Link to="/" className="inline-flex items-center gap-2" aria-label="Monogamy home">
-              <Scale className="w-8 h-8 text-primary" />
-              <h2 className="text-2xl font-heading font-bold text-foreground">
-                Monogamy
-              </h2>
+              <Link to="/" className="inline-flex" aria-label="Cumpani home">
+              <img
+                src="/monogamyblk.svg"
+                alt="Monogamy"
+                className="w-[180px] h-auto dark:hidden"
+              />
+              <img
+                src="/monogamywht.svg"
+                alt="Monogamy"
+                className="hidden w-[180px] h-auto dark:block"
+              />
             </Link>
             <p className="text-sm text-muted-foreground">
-              Your premier legal services platform connecting clients with licensed attorneys and law firms across Africa.
+              Monogamy is a legal tech company that was launched in South Africa in 2025 to help businesses and individuals get online legal help at a price they can afford. Monogamy's growing network of highly reputable attorneys and law firms have partnered up to facilitate access to various legal services including personalized legal documents, document review, e-signatures, legal advice, representation in court and more.
             </p>
           </div>
           
