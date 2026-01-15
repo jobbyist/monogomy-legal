@@ -62,7 +62,39 @@ This project is built with:
 
 ## How can I deploy this project?
 
-Simply open [Lovable](https://lovable.dev/projects/65c2f9ed-16cc-427a-af29-7a59108fd09a) and click on Share -> Publish.
+### GitHub Pages Deployment (Recommended)
+
+This project is configured to automatically deploy to GitHub Pages when changes are pushed to the `main` branch.
+
+**Deployment Steps:**
+
+1. **Enable GitHub Pages in Repository Settings:**
+   - Go to your repository on GitHub
+   - Navigate to Settings > Pages
+   - Under "Build and deployment", select "GitHub Actions" as the source
+
+2. **Push to Main Branch:**
+   - Any push to the `main` branch will trigger the deployment workflow automatically
+   - The workflow can also be manually triggered from the Actions tab
+
+3. **Access Your Site:**
+   - Once deployed, your site will be available at the URL shown in the Pages settings
+   - If using a custom domain (CNAME file), it will be available at that domain
+
+**Manual Deployment:**
+- Navigate to the Actions tab in your GitHub repository
+- Click on "Deploy to GitHub Pages" workflow
+- Click "Run workflow" to manually trigger a deployment
+
+**Technical Details:**
+- The build process uses Vite to bundle the application
+- SPA routing is handled via a 404.html redirect mechanism
+- The `.nojekyll` file prevents Jekyll processing on GitHub Pages
+- All static assets are optimized and versioned for caching
+
+### Alternative: Lovable Platform
+
+You can also deploy via [Lovable](https://lovable.dev/projects/65c2f9ed-16cc-427a-af29-7a59108fd09a) by clicking Share -> Publish.
 
 ## Can I connect a custom domain to my Lovable project?
 
