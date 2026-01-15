@@ -19,10 +19,10 @@ const Header = () => {
   const { user, logout, isAuthenticated } = useAuth();
 
   const navItems = [
-    { name: 'FIND ATTORNEYS', href: '/attorneys' },
-    { name: 'BROWSE BY LOCATION', href: '/locations' },
-    { name: 'ABOUT US', href: '/about' },
-    { name: 'CONTACT SUPPORT', href: '/contact' },
+    { name: 'ATTORNEYS', href: '/attorneys' },
+    { name: 'LOCATIONS', href: '/locations' },
+    { name: 'PRICING', href: '/about' },
+    { name: 'SUPPORT', href: '/contact' },
   ];
 
   const socialLinks = [
@@ -36,10 +36,17 @@ const Header = () => {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <div className="flex-shrink-0">
-             <Link to="/" className="block" aria-label="Monogamy home">
-              <h1 className="text-2xl font-heading font-bold text-foreground">
-                Monogamy
-              </h1>
+            <Link to="/" className="block" aria-label="Cumpani home">
+              <img
+                src="/monogamyblk.svg"
+                alt="Monogamy"
+                className="w-[180px] h-auto dark:hidden"
+              />
+              <img
+                src="/monogamywht.svg"
+                alt="Monogamy"
+                className="hidden w-[180px] h-auto dark:block"
+              />
             </Link>
           </div>
 
