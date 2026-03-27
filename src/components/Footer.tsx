@@ -11,12 +11,12 @@ const Footer = () => {
               <img
                 src="/monogamyblk.svg"
                 alt="Monogamy"
-                className="w-[180px] h-auto dark:hidden"
+                className="w-[200px] h-auto dark:hidden"
               />
               <img
                 src="/monogamywht.svg"
                 alt="Monogamy"
-                className="hidden w-[180px] h-auto dark:block"
+                className="hidden w-[200px] h-auto dark:block"
               />
             </Link>
             <p className="text-sm text-muted-foreground">
@@ -28,8 +28,8 @@ const Footer = () => {
             <h3 className="font-heading font-medium text-foreground">Services</h3>
             <ul className="space-y-2 text-sm">
               <li><Link to="/attorneys" className="text-muted-foreground hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded">Find Attorneys</Link></li>
-              <li><Link to="/become-attorney" className="text-muted-foreground hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded">Join as Attorney</Link></li>
-              <li><Link to="/membership" className="text-muted-foreground hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded">Subscribe</Link></li>
+              <li><Link to="/partners" className="text-muted-foreground hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded">Lawyer Partners</Link></li>
+              <li><Link to="/membership" className="text-muted-foreground hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded">Pricing</Link></li>
               <li><Link to="/about" className="text-muted-foreground hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded">How It Works</Link></li>
             </ul>
           </div>
