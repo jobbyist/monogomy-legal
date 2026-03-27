@@ -16,22 +16,26 @@ const Index = () => {
       <Header />
       <main id="main-content">
         {/* Hero Section */}
-        <section className="relative py-20 bg-gradient-to-b from-primary/10 to-background animate-fade-in">
-          <div className="container-blog">
+        <section className="relative py-24 bg-gradient-to-b from-primary/10 via-primary/5 to-background animate-fade-in overflow-hidden">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/10 via-transparent to-transparent pointer-events-none" />
+          <div className="container-blog relative">
             <div className="max-w-4xl mx-auto text-center space-y-6">
-              <h1 className="text-5xl md:text-6xl font-heading font-bold text-foreground animate-slide-in">
-                Pioneering the Next-Generation of World-Class Legal Services in Africa
+              <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-1.5 rounded-full text-sm font-semibold mb-2 animate-fade-in">
+                <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+                Africa's Premier Legal Platform
+              </div>
+              <h1 className="text-5xl md:text-6xl font-heading font-bold text-foreground animate-slide-in leading-tight">
+                Your on-demand legal team —<br className="hidden md:block" /> without the overhead.
               </h1>
-              <p className="text-xl text-muted-foreground">
-                Connect with licensed legal practitioners, verified attorneys, and reputable law firms across various areas of legal expertise throughout Africa. 
-                Professional, reliable, and accessible.
+              <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+                Access a vetted network of licensed attorneys across Africa. Predictable pricing, fast response times, and real legal expertise — exactly when you need it.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button size="lg" asChild className="hover:scale-105 transition-transform rounded-lg">
-                  <Link to="/attorneys">Find an Attorney</Link>
+                <Button size="lg" asChild className="hover:scale-105 transition-transform rounded-lg shadow-md">
+                  <Link to="/membership">Get Started</Link>
                 </Button>
                 <Button size="lg" variant="outline" asChild className="hover:scale-105 transition-transform rounded-lg">
-                  <Link to="/about">Learn More</Link>
+                  <Link to="/attorneys">Meet Our Attorneys</Link>
                 </Button>
               </div>
             </div>

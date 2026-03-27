@@ -7,9 +7,11 @@ import { Button } from '@/components/ui/button';
 
 // Common currencies with South African Rand as base
 const currencies = [
-  { code: 'ZAR', name: 'South African Rand', symbol: 'R' },
   { code: 'USD', name: 'US Dollar', symbol: '$' },
   { code: 'EUR', name: 'Euro', symbol: '€' },
+  { code: 'ZAR', name: 'South African Rand', symbol: 'R' },
+  { code: 'NGN', name: 'Nigerian Naira', symbol: '₦' },
+  { code: 'KES', name: 'Kenyan Shilling', symbol: 'KSh' },
   { code: 'GBP', name: 'British Pound', symbol: '£' },
   { code: 'AUD', name: 'Australian Dollar', symbol: 'A$' },
   { code: 'CAD', name: 'Canadian Dollar', symbol: 'C$' },
@@ -32,6 +34,8 @@ const exchangeRates: Record<string, number> = {
   JPY: 7.85,
   CNY: 0.38,
   INR: 4.51,
+  NGN: 86.5,
+  KES: 6.85,
 };
 
 const CurrencyConverter = () => {

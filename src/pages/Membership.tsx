@@ -1,278 +1,273 @@
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Users, CheckCircle, Shield, Lock, Wallet, MessageSquare, Sparkles, Tag, Gift, RefreshCw } from 'lucide-react';
+import { CheckCircle, Zap, Star, Shield, ArrowRight } from 'lucide-react';
+import CurrencyConverter from '@/components/CurrencyConverter';
+
+type Currency = 'USD' | 'EUR' | 'ZAR' | 'NGN' | 'KES';
+
+const currencyConfig: Record<Currency, { symbol: string; rate: number; label: string }> = {
+  USD: { symbol: '$', rate: 1, label: 'USD' },
+  EUR: { symbol: '€', rate: 0.92, label: 'EUR' },
+  ZAR: { symbol: 'R', rate: 18.87, label: 'ZAR' },
+  NGN: { symbol: '₦', rate: 1630, label: 'NGN' },
+  KES: { symbol: 'KSh', rate: 129, label: 'KES' },
+};
+
+const plans = [
+  {
+    id: 'essential',
+    name: 'Essential',
+    priceUSD: 19.99,
+    tagline: 'Affordable legal clarity, on demand.',
+    description: 'Perfect for: Individuals, freelancers, early-stage founders',
+    icon: Zap,
+    popular: false,
+    features: [
+      'Access to vetted lawyer network (all practice areas)',
+      '2 legal consultations per month (20–30 mins each, chat or call)',
+      'Basic document review (1 document/month, up to 5 pages)',
+      'Standard response time (24–48 hours)',
+      'Access to legal templates library (contracts, NDAs, etc.)',
+      'In-app messaging with matched lawyers',
+    ],
+  },
+  {
+    id: 'professional',
+    name: 'Professional',
+    priceUSD: 49.99,
+    tagline: 'Built for operators who move fast and need legal to keep up.',
+    description: 'Ideal for: SMEs, growing startups, serious operators',
+    icon: Star,
+    popular: true,
+    features: [
+      'Everything in Essential, plus:',
+      '5 legal consultations per month (priority booking)',
+      'Faster response time (within 12–24 hours)',
+      'Document review (up to 3 documents/month, 10 pages each)',
+      '1 custom document draft per month (e.g., contract, agreement)',
+      'Dedicated legal concierge (smart matching to best-fit lawyers)',
+      'Discounted hourly rates (10–15% off) for extended work',
+      'Multi-country legal access (cross-border advisory within Africa)',
+    ],
+  },
+  {
+    id: 'enterprise',
+    name: 'Enterprise',
+    priceUSD: 129.99,
+    tagline: 'Full legal infrastructure for serious businesses.',
+    description: 'Ideal for: Established businesses, high-growth startups, agencies',
+    icon: Shield,
+    popular: false,
+    features: [
+      'Everything in Professional, plus:',
+      'Unlimited consultations (fair use policy)',
+      'Same-day response time (priority queue)',
+      'Unlimited document reviews',
+      '3 custom legal documents per month',
+      'Dedicated account manager (human, not just concierge)',
+      'Legal risk monitoring + proactive alerts (compliance, deadlines, etc.)',
+      '20% discounted rates for complex legal work',
+      'Team access (up to 5 users)',
+      'Quarterly legal strategy session (deep-dive with senior lawyer)',
+    ],
+  },
+];
 
 const Membership = () => {
+  const [currency, setCurrency] = useState<Currency>('USD');
+
+  const fmt = (usd: number) => {
+    const { symbol, rate } = currencyConfig[currency];
+    const amount = (usd * rate).toLocaleString(undefined, {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    });
+    return `${symbol}${amount}`;
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      
-      <main id="main-content" className="container-blog py-12">
-        <div className="max-w-5xl mx-auto">
-          {/* Hero Section */}
-          <div className="text-center mb-16">
-            <Users className="w-20 h-20 text-primary mx-auto mb-6" />
-            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-              Join The Cummunity
+
+      <main id="main-content">
+        {/* Hero */}
+        <section className="relative py-24 bg-gradient-to-b from-primary/10 via-primary/5 to-background overflow-hidden">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/10 via-transparent to-transparent pointer-events-none" />
+          <div className="container-blog relative text-center space-y-6 max-w-3xl mx-auto">
+            <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-1.5 rounded-full text-sm font-semibold">
+              <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+              Simple, Transparent Pricing
+            </div>
+            <h1 className="text-4xl md:text-5xl font-heading font-bold text-foreground">
+              Legal coverage that scales with your ambition
             </h1>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-6">
-              Unlock premium features and exclusive benefits for just <span className="text-primary font-bold">$9.99/month</span>
+            <p className="text-xl text-muted-foreground">
+              No surprise bills. No hourly anxiety. Just the right legal team, always on.
             </p>
-            <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full">
-              <Gift className="w-5 h-5" />
-              <span className="font-semibold">New users get 30% off their first booking!</span>
+          </div>
+        </section>
+
+        {/* Currency Selector */}
+        <section className="py-6 bg-muted/40 border-y border-border">
+          <div className="container-blog flex flex-wrap items-center justify-center gap-3">
+            <span className="text-sm font-medium text-muted-foreground">View pricing in:</span>
+            {(Object.keys(currencyConfig) as Currency[]).map((c) => (
+              <button
+                key={c}
+                onClick={() => setCurrency(c)}
+                className={`px-4 py-1.5 rounded-full text-sm font-semibold transition-all border ${
+                  currency === c
+                    ? 'bg-primary text-primary-foreground border-primary shadow-sm'
+                    : 'bg-background text-muted-foreground border-border hover:border-primary/50 hover:text-foreground'
+                }`}
+              >
+                {currencyConfig[c].label} {currencyConfig[c].symbol}
+              </button>
+            ))}
+          </div>
+        </section>
+
+        {/* Pricing Cards */}
+        <section className="py-20">
+          <div className="container-blog">
+            <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+              {plans.map((plan) => {
+                const Icon = plan.icon;
+                return (
+                  <Card
+                    key={plan.id}
+                    className={`relative flex flex-col transition-all duration-300 hover:shadow-xl rounded-2xl ${
+                      plan.popular
+                        ? 'border-2 border-primary shadow-lg scale-[1.02]'
+                        : 'border border-border hover:border-primary/40'
+                    }`}
+                  >
+                    {plan.popular && (
+                      <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground text-xs font-bold px-4 py-1 rounded-full shadow">
+                        MOST POPULAR
+                      </div>
+                    )}
+                    <CardHeader className={`pb-6 ${plan.popular ? 'bg-gradient-to-b from-primary/8 to-transparent' : ''} rounded-t-2xl`}>
+                      <div className="flex items-center gap-3 mb-4">
+                        <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${plan.popular ? 'bg-primary text-primary-foreground' : 'bg-primary/10 text-primary'}`}>
+                          <Icon className="w-5 h-5" />
+                        </div>
+                        <CardTitle className="font-heading text-xl">{plan.name}</CardTitle>
+                      </div>
+                      <div className="mb-2">
+                        <span className="text-4xl font-bold text-foreground">{fmt(plan.priceUSD)}</span>
+                        <span className="text-muted-foreground text-sm ml-1">/month</span>
+                      </div>
+                      <CardDescription className="text-sm text-muted-foreground leading-relaxed">
+                        {plan.description}
+                      </CardDescription>
+                      <p className="text-sm font-medium text-primary mt-2 italic">"{plan.tagline}"</p>
+                    </CardHeader>
+                    <CardContent className="flex-1 flex flex-col gap-6">
+                      <ul className="space-y-3 flex-1">
+                        {plan.features.map((feature, i) => (
+                          <li key={i} className="flex items-start gap-2.5 text-sm">
+                            <CheckCircle className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
+                            <span className={feature.startsWith('Everything') ? 'font-semibold text-foreground' : 'text-muted-foreground'}>
+                              {feature}
+                            </span>
+                          </li>
+                        ))}
+                      </ul>
+                      <Button
+                        size="lg"
+                        className={`w-full rounded-xl hover:scale-[1.02] transition-transform ${plan.popular ? '' : 'variant-outline'}`}
+                        variant={plan.popular ? 'default' : 'outline'}
+                        asChild
+                      >
+                        <Link to="/signup">
+                          Get Started <ArrowRight className="w-4 h-4 ml-2" />
+                        </Link>
+                      </Button>
+                    </CardContent>
+                  </Card>
+                );
+              })}
+            </div>
+
+            <p className="text-center text-sm text-muted-foreground mt-10">
+              All plans include a <span className="font-semibold text-foreground">30-day money-back guarantee</span>. No contracts. Cancel anytime.
+            </p>
+          </div>
+        </section>
+
+        {/* Currency Converter */}
+        <section className="py-16 bg-muted/50">
+          <div className="container-blog max-w-2xl mx-auto">
+            <h2 className="text-2xl font-heading font-bold text-center mb-8">Currency Converter</h2>
+            <CurrencyConverter />
+          </div>
+        </section>
+
+        {/* FAQ */}
+        <section className="py-16">
+          <div className="container-blog max-w-3xl mx-auto">
+            <h2 className="text-3xl font-heading font-bold text-center mb-12">Common Questions</h2>
+            <div className="space-y-4">
+              {[
+                {
+                  q: 'Can I upgrade or downgrade at any time?',
+                  a: 'Yes. You can change your plan at any time. Upgrades take effect immediately; downgrades apply at the next billing cycle.',
+                },
+                {
+                  q: 'What counts as a "consultation"?',
+                  a: 'A consultation is a scheduled 20–30 minute session with a matched lawyer via chat or call, focused on your specific legal question or matter.',
+                },
+                {
+                  q: 'Is my data confidential?',
+                  a: 'Absolutely. All communications and documents are encrypted end-to-end. We never share your data with third parties.',
+                },
+                {
+                  q: 'What happens if I need more consultations than my plan allows?',
+                  a: 'You can purchase add-on consultations at a discounted rate, or upgrade to a higher plan for better value.',
+                },
+                {
+                  q: 'Which countries are covered?',
+                  a: 'We currently serve clients across South Africa, Nigeria, and Kenya, with cross-border advisory available on the Professional and Enterprise plans.',
+                },
+              ].map(({ q, a }) => (
+                <Card key={q}>
+                  <CardHeader>
+                    <CardTitle className="text-base">{q}</CardTitle>
+                    <CardDescription>{a}</CardDescription>
+                  </CardHeader>
+                </Card>
+              ))}
             </div>
           </div>
+        </section>
 
-          {/* Pricing Card */}
-          <div className="mb-16">
-            <Card className="border-2 border-primary shadow-xl max-w-2xl mx-auto">
-              <CardHeader className="text-center pb-8 bg-gradient-to-r from-primary/10 to-primary/5">
-                <div className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-4 py-1 rounded-full text-sm font-semibold mx-auto mb-4">
-                  <Sparkles className="w-4 h-4" />
-                  PREMIUM MEMBERSHIP
-                </div>
-                <CardTitle className="text-4xl mb-2">
-                  <span className="text-5xl font-bold">$9.99</span>
-                  <span className="text-xl text-muted-foreground">/month</span>
-                </CardTitle>
-                <CardDescription className="text-lg">
-                  Everything you need for a premium companionship experience
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="pt-8">
-                <div className="text-center mb-8">
-                  <Button size="lg" className="w-full max-w-xs hover:scale-105 transition-transform">
-                    Subscribe Now
-                  </Button>
-                  <p className="text-sm text-muted-foreground mt-4 flex items-center justify-center gap-2">
-                    <RefreshCw className="w-4 h-4" />
-                    30-day money back guarantee
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-
-          {/* Benefits Section */}
-          <div className="mb-16">
-            <h2 className="text-3xl font-bold text-center mb-12">Member Benefits</h2>
-            <div className="grid md:grid-cols-2 gap-8">
-              <Card className="hover:shadow-lg transition-all duration-300">
-                <CardHeader>
-                  <CheckCircle className="w-12 h-12 mb-4 text-primary" />
-                  <CardTitle>Instant Access to Verified Profiles</CardTitle>
-                  <CardDescription>
-                    Browse and contact all verified companions instantly. No waiting periods, 
-                    no restrictions. Full access to premium profiles and detailed information.
-                  </CardDescription>
-                </CardHeader>
-              </Card>
-
-              <Card className="hover:shadow-lg transition-all duration-300">
-                <CardHeader>
-                  <Sparkles className="w-12 h-12 mb-4 text-primary" />
-                  <CardTitle>Ad-Free Browsing Experience</CardTitle>
-                  <CardDescription>
-                    Enjoy a clean, distraction-free platform. No advertisements, no interruptions. 
-                    Focus on finding the perfect companion without any distractions.
-                  </CardDescription>
-                </CardHeader>
-              </Card>
-
-              <Card className="hover:shadow-lg transition-all duration-300">
-                <CardHeader>
-                  <Wallet className="w-12 h-12 mb-4 text-primary" />
-                  <CardTitle>Secure Virtual Wallet</CardTitle>
-                  <CardDescription>
-                    100% encrypted and confidential payment system. Your financial information 
-                    is protected with bank-level security. Quick and easy transactions.
-                  </CardDescription>
-                </CardHeader>
-              </Card>
-
-              <Card className="hover:shadow-lg transition-all duration-300">
-                <CardHeader>
-                  <MessageSquare className="w-12 h-12 mb-4 text-primary" />
-                  <CardTitle>Direct Messaging</CardTitle>
-                  <CardDescription>
-                    Message companions directly after booking. Coordinate details, ask questions, 
-                    and build a connection through our secure messaging platform.
-                  </CardDescription>
-                </CardHeader>
-              </Card>
-
-              <Card className="hover:shadow-lg transition-all duration-300">
-                <CardHeader>
-                  <Tag className="w-12 h-12 mb-4 text-primary" />
-                  <CardTitle>30% Off First Booking</CardTitle>
-                  <CardDescription>
-                    New members receive an exclusive 30% discount on their first booking. 
-                    Experience premium companionship at an incredible introductory price.
-                  </CardDescription>
-                </CardHeader>
-              </Card>
-
-              <Card className="hover:shadow-lg transition-all duration-300">
-                <CardHeader>
-                  <Shield className="w-12 h-12 mb-4 text-primary" />
-                  <CardTitle>30-Day Money Back Guarantee</CardTitle>
-                  <CardDescription>
-                    Not satisfied? Get a full refund within 30 days, no questions asked. 
-                    We're confident you'll love the Cumpani experience.
-                  </CardDescription>
-                </CardHeader>
-              </Card>
-            </div>
-          </div>
-
-          {/* Additional Benefits Section */}
-          <div className="mb-16 bg-muted p-8 rounded-lg">
-            <h2 className="text-3xl font-bold text-center mb-8">What Else You Get</h2>
-            <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
-              <div className="flex items-start gap-3">
-                <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-1" />
-                <div>
-                  <h3 className="font-semibold text-foreground mb-1">Priority Support</h3>
-                  <p className="text-sm text-muted-foreground">Get help faster with dedicated member support</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-3">
-                <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-1" />
-                <div>
-                  <h3 className="font-semibold text-foreground mb-1">Advanced Search Filters</h3>
-                  <p className="text-sm text-muted-foreground">Find exactly what you're looking for with premium filters</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-3">
-                <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-1" />
-                <div>
-                  <h3 className="font-semibold text-foreground mb-1">Favorite Companions</h3>
-                  <p className="text-sm text-muted-foreground">Save your favorite profiles for quick access</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-3">
-                <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-1" />
-                <div>
-                  <h3 className="font-semibold text-foreground mb-1">Booking History</h3>
-                  <p className="text-sm text-muted-foreground">Track and manage all your bookings in one place</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-3">
-                <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-1" />
-                <div>
-                  <h3 className="font-semibold text-foreground mb-1">Early Access</h3>
-                  <p className="text-sm text-muted-foreground">Be the first to see new companion profiles</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-3">
-                <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-1" />
-                <div>
-                  <h3 className="font-semibold text-foreground mb-1">Member-Only Features</h3>
-                  <p className="text-sm text-muted-foreground">Access exclusive features as we add them</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Security & Privacy */}
-          <div className="mb-16">
-            <h2 className="text-3xl font-bold text-center mb-8">Your Security & Privacy</h2>
-            <div className="grid md:grid-cols-3 gap-6">
-              <Card>
-                <CardHeader className="text-center">
-                  <Lock className="w-12 h-12 mb-4 text-primary mx-auto" />
-                  <CardTitle className="text-lg">100% Encrypted</CardTitle>
-                  <CardDescription>
-                    All payments and messages are encrypted end-to-end
-                  </CardDescription>
-                </CardHeader>
-              </Card>
-              <Card>
-                <CardHeader className="text-center">
-                  <Shield className="w-12 h-12 mb-4 text-primary mx-auto" />
-                  <CardTitle className="text-lg">Confidential</CardTitle>
-                  <CardDescription>
-                    Your information is never shared with third parties
-                  </CardDescription>
-                </CardHeader>
-              </Card>
-              <Card>
-                <CardHeader className="text-center">
-                  <CheckCircle className="w-12 h-12 mb-4 text-primary mx-auto" />
-                  <CardTitle className="text-lg">Verified Profiles</CardTitle>
-                  <CardDescription>
-                    Every companion is verified and background checked
-                  </CardDescription>
-                </CardHeader>
-              </Card>
-            </div>
-          </div>
-
-          {/* FAQ Section */}
-          <div className="mb-16">
-            <h2 className="text-3xl font-bold text-center mb-8">Frequently Asked Questions</h2>
-            <div className="space-y-4 max-w-3xl mx-auto">
-              <Card>
-                <CardHeader>
-                  <CardTitle className="text-lg">Can I cancel anytime?</CardTitle>
-                  <CardDescription>
-                    Yes! You can cancel your membership at any time. There are no long-term contracts 
-                    or commitments. If you cancel within 30 days, you'll get a full refund.
-                  </CardDescription>
-                </CardHeader>
-              </Card>
-              <Card>
-                <CardHeader>
-                  <CardTitle className="text-lg">How does the 30% discount work?</CardTitle>
-                  <CardDescription>
-                    The 30% discount is automatically applied to your first booking as a new member. 
-                    Simply complete your booking and the discount will be reflected in your total.
-                  </CardDescription>
-                </CardHeader>
-              </Card>
-              <Card>
-                <CardHeader>
-                  <CardTitle className="text-lg">Is my payment information secure?</CardTitle>
-                  <CardDescription>
-                    Absolutely. We use bank-level encryption and never store your full payment details. 
-                    All transactions are processed through our secure virtual wallet system.
-                  </CardDescription>
-                </CardHeader>
-              </Card>
-              <Card>
-                <CardHeader>
-                  <CardTitle className="text-lg">What happens after the 30-day guarantee?</CardTitle>
-                  <CardDescription>
-                    After 30 days, your membership continues at the same $9.99/month rate. 
-                    You can still cancel anytime, but refunds are only available within the first 30 days.
-                  </CardDescription>
-                </CardHeader>
-              </Card>
-            </div>
-          </div>
-
-          {/* Final CTA */}
-          <div className="text-center bg-gradient-to-r from-primary/10 to-primary/5 p-12 rounded-lg">
-            <h2 className="text-3xl font-bold text-foreground mb-4">
-              Ready to Join?
+        {/* Final CTA */}
+        <section className="py-20 bg-primary text-primary-foreground">
+          <div className="container-blog text-center space-y-6 max-w-3xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-heading font-bold">
+              Stop guessing. Start knowing.
             </h2>
-            <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-              Start your premium membership today and experience the best of Cumpani. 
-              Risk-free with our 30-day money back guarantee.
+            <p className="text-lg opacity-90">
+              Join thousands of individuals and businesses across Africa who have replaced unpredictable legal bills with a smart, subscription-based legal team.
             </p>
-            <Button size="lg" className="hover:scale-105 transition-transform">
-              Subscribe for $9.99/Month
-            </Button>
-            <p className="text-sm text-muted-foreground mt-4">
-              No commitment • Cancel anytime • 30-day money back guarantee
-            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button size="lg" variant="secondary" asChild className="hover:scale-105 transition-transform rounded-xl">
+                <Link to="/signup">Start Your Subscription</Link>
+              </Button>
+              <Button size="lg" variant="outline" className="bg-transparent border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary rounded-xl" asChild>
+                <Link to="/attorneys">Browse Attorneys</Link>
+              </Button>
+            </div>
+            <p className="text-sm opacity-70">30-day money-back guarantee · No long-term contracts · Cancel anytime</p>
           </div>
-        </div>
+        </section>
       </main>
-      
+
       <Footer />
     </div>
   );

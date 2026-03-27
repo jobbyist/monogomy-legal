@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import SkipLink from "@/components/SkipLink";
 import AgeVerification from "@/components/AgeVerification";
 import AIChatbot from "@/components/AIChatbot";
+import ScrollToTop from "@/components/ScrollToTop";
 import { Suspense, lazy } from "react";
 import { AuthProvider } from "@/contexts/AuthContext";
 import Index from "./pages/Index";
@@ -33,6 +34,7 @@ const Attorneys = lazy(() => import("./pages/Attorneys"));
 const AttorneyDetail = lazy(() => import("./pages/AttorneyDetail"));
 const BecomeAttorney = lazy(() => import("./pages/BecomeAttorney"));
 const Membership = lazy(() => import("./pages/Membership"));
+const Partners = lazy(() => import("./pages/Partners"));
 
 const queryClient = new QueryClient();
 
@@ -46,6 +48,7 @@ const App = () => (
           <Toaster />
           <Sonner />
           <BrowserRouter>
+              <ScrollToTop />
               <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Loading...</div>}>
                 <Routes>
                   <Route path="/" element={<Index />} />
@@ -53,6 +56,7 @@ const App = () => (
                   <Route path="/attorney/:id" element={<AttorneyDetail />} />
                   <Route path="/become-attorney" element={<BecomeAttorney />} />
                   <Route path="/membership" element={<Membership />} />
+                  <Route path="/partners" element={<Partners />} />
                   <Route path="/posts" element={<AllPosts />} />
                   <Route path="/business" element={<Business />} />
                   <Route path="/technology" element={<Technology />} />
