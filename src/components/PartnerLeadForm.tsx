@@ -88,7 +88,7 @@ function computeScore(data: FormData) {
 
   // Region (required)
   if (data.regions.length === 0) {
-    disqualifiers.push('No presence in target markets (SA, NG, or KE required).');
+    disqualifiers.push('No presence in target markets (South Africa, Nigeria, or Kenya required).');
   }
 
   // Firm Size — max 3 pts
@@ -97,7 +97,7 @@ function computeScore(data: FormData) {
     if (lawyers >= 20) score += 3;
     else if (lawyers >= 5) score += 2;
     else if (lawyers >= 1) score += 1;
-    else disqualifiers.push('Firm size is invalid or zero.');
+    else disqualifiers.push('Please select a valid firm size.');
   }
 
   // Practice Focus — max 3 pts
@@ -617,8 +617,8 @@ function StepTechnology({ data, update }: StepProps) {
 
 function StepEngagement({ data, update }: StepProps) {
   const options = [
-    { value: 'yes', label: 'Yes — we've attended a Monogamy event, downloaded resources, or been in contact with the team.' },
-    { value: 'partial', label: 'Somewhat — we've heard of Monogamy but haven't formally engaged.' },
+    { value: 'yes', label: "Yes — we've attended a Monogamy event, downloaded resources, or been in contact with the team." },
+    { value: 'partial', label: "Somewhat — we've heard of Monogamy but haven't formally engaged." },
     { value: 'no', label: 'No — this is our first interaction.' },
   ];
 

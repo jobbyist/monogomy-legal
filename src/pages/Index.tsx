@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import NotificationBar from '@/components/NotificationBar';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Shield, Scale, Users, Award, CheckCircle, BookOpen, Briefcase, GraduationCap } from 'lucide-react';
@@ -13,6 +14,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <NotificationBar />
       <Header />
       <main id="main-content">
         {/* Hero Section */}

@@ -103,6 +103,9 @@ const plans = [
       'Dedicated client success manager',
       'Cross-border lead access (3 countries)',
       '10% off commission on closed deals',
+      'AI Support Chatbot for client intake',
+      'AI Voice Assistant for client queries',
+      'Workflow automation (email, billing, docs)',
     ],
     cta: 'Go Pro',
     popular: true,
@@ -125,6 +128,9 @@ const plans = [
       '20% off commission on closed deals',
       'Team access (up to 10 lawyers)',
       'Quarterly business strategy session',
+      'Advanced AI chatbot + voice assistant suite',
+      'Full workflow automation platform',
+      'Custom AI automation workflows',
     ],
     cta: 'Go Elite',
     popular: false,
@@ -135,6 +141,7 @@ const plans = [
 const Partners = () => {
   const [testimonialIndex, setTestimonialIndex] = useState(0);
   const [billingAnnual, setBillingAnnual] = useState(false);
+  const [formOpen, setFormOpen] = useState(false);
 
   const nextTestimonial = () => setTestimonialIndex((i) => (i + 1) % testimonials.length);
   const prevTestimonial = () => setTestimonialIndex((i) => (i - 1 + testimonials.length) % testimonials.length);
@@ -169,13 +176,11 @@ const Partners = () => {
               Stop relying on referrals and cold outreach. Monogamy connects you with high-intent, pre-qualified clients — continuously — so you can focus on what you do best: practising law.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="rounded-xl hover:scale-105 transition-transform shadow-lg" asChild>
-                <Link to="/signup">
-                  Join the Network <ArrowRight className="w-4 h-4 ml-2" />
-                </Link>
+              <Button size="lg" className="rounded-xl hover:scale-105 transition-transform shadow-lg" onClick={() => setFormOpen(true)}>
+                Join the Network <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
-              <Button size="lg" variant="outline" className="rounded-xl hover:scale-105 transition-transform" asChild>
-                <Link to="/contact">Get Started</Link>
+              <Button size="lg" variant="outline" className="rounded-xl hover:scale-105 transition-transform" onClick={() => setFormOpen(true)}>
+                Get Started
               </Button>
             </div>
           </div>
@@ -300,48 +305,62 @@ const Partners = () => {
             </div>
 
             <div className="grid md:grid-cols-4 gap-6 mt-10">
-              {plans.map((plan) => (
-                <Card
-                  key={plan.id}
-                  className={`relative flex flex-col transition-all duration-300 hover:shadow-xl rounded-2xl ${
-                    plan.highlight
-                      ? 'border-2 border-primary shadow-lg scale-[1.03]'
-                      : 'border border-border hover:border-primary/40'
-                  }`}
-                >
-                  {plan.popular && (
-                    <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground text-xs font-bold px-4 py-1 rounded-full shadow">
-                      MOST POPULAR
-                    </div>
-                  )}
-                  <CardHeader className={`pb-4 ${plan.highlight ? 'bg-gradient-to-b from-primary/8 to-transparent' : ''} rounded-t-2xl`}>
-                    <CardTitle className="font-heading text-lg">{plan.name}</CardTitle>
-                    <div className="mt-2">
-                      <span className="text-3xl font-bold text-foreground">{getPrice(plan.price)}</span>
-                      <span className="text-sm text-muted-foreground ml-1">{plan.priceNote}</span>
-                    </div>
-                    <CardDescription className="text-sm mt-1">{plan.description}</CardDescription>
-                  </CardHeader>
-                  <CardContent className="flex-1 flex flex-col gap-4">
-                    <ul className="space-y-2.5 flex-1">
-                      {plan.features.map((f, i) => (
-                        <li key={i} className="flex items-start gap-2 text-sm">
-                          <CheckCircle className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
-                          <span className="text-muted-foreground">{f}</span>
-                        </li>
-                      ))}
-                    </ul>
-                    <Button
-                      size="default"
-                      variant={plan.highlight ? 'default' : 'outline'}
-                      className="w-full rounded-xl hover:scale-[1.02] transition-transform"
-                      asChild
-                    >
-                      <Link to="/signup">{plan.cta}</Link>
-                    </Button>
-                  </CardContent>
-                </Card>
-              ))}
+              {plans.map((plan) => {
+                const hasAI = plan.id === 'pro' || plan.id === 'elite';
+                return (
+                  <Card
+                    key={plan.id}
+                    className={`relative flex flex-col transition-all duration-300 hover:shadow-xl rounded-2xl ${
+                      plan.highlight
+                        ? 'border-2 border-primary shadow-lg scale-[1.03]'
+                        : 'border border-border hover:border-primary/40'
+                    }`}
+                  >
+                    {plan.popular && (
+                      <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground text-xs font-bold px-4 py-1 rounded-full shadow">
+                        ⭐ POPULAR
+                      </div>
+                    )}
+                    <CardHeader className={`pb-4 ${plan.highlight ? 'bg-gradient-to-b from-primary/8 to-transparent' : ''} rounded-t-2xl`}>
+                      <div className="flex items-center justify-between">
+                        <CardTitle className="font-heading text-lg">{plan.name}</CardTitle>
+                        {hasAI && (
+                          <span className="inline-flex items-center gap-1 text-[10px] font-bold bg-violet-100 dark:bg-violet-950 text-violet-700 dark:text-violet-300 px-2 py-0.5 rounded-full border border-violet-200 dark:border-violet-800">
+                            <Bot className="w-3 h-3" /> AI
+                          </span>
+                        )}
+                      </div>
+                      <div className="mt-2">
+                        <span className="text-3xl font-bold text-foreground">{getPrice(plan.price)}</span>
+                        <span className="text-sm text-muted-foreground ml-1">{plan.priceNote}</span>
+                      </div>
+                      <CardDescription className="text-sm mt-1">{plan.description}</CardDescription>
+                    </CardHeader>
+                    <CardContent className="flex-1 flex flex-col gap-4">
+                      <ul className="space-y-2.5 flex-1">
+                        {plan.features.map((f, i) => {
+                          const fl = f.toLowerCase();
+                          const isAIFeature = fl.includes('ai') || fl.includes('chatbot') || fl.includes('voice') || fl.includes('workflow automation') || fl.includes('automation');
+                          return (
+                            <li key={i} className="flex items-start gap-2 text-sm">
+                              <CheckCircle className={`w-4 h-4 flex-shrink-0 mt-0.5 ${isAIFeature ? 'text-violet-500' : 'text-primary'}`} />
+                              <span className={`${isAIFeature ? 'text-foreground font-medium' : 'text-muted-foreground'}`}>{f}</span>
+                            </li>
+                          );
+                        })}
+                      </ul>
+                      <Button
+                        size="default"
+                        variant={plan.highlight ? 'default' : 'outline'}
+                        className="w-full rounded-xl hover:scale-[1.02] transition-transform"
+                        onClick={() => setFormOpen(true)}
+                      >
+                        {plan.cta}
+                      </Button>
+                    </CardContent>
+                  </Card>
+                );
+              })}
             </div>
           </div>
         </section>
@@ -422,6 +441,73 @@ const Partners = () => {
           </div>
         </section>
 
+        {/* AI SERVICES TEASER */}
+        <section className="py-16 bg-gradient-to-br from-violet-50 via-background to-background dark:from-violet-950/30 border-y border-violet-200 dark:border-violet-900">
+          <div className="container-blog max-w-5xl mx-auto">
+            <div className="flex flex-col md:flex-row items-center gap-10">
+              <div className="flex-1 space-y-5">
+                <div className="inline-flex items-center gap-2 text-xs font-bold text-violet-700 dark:text-violet-300 bg-violet-100 dark:bg-violet-900/50 px-3 py-1.5 rounded-full border border-violet-200 dark:border-violet-800">
+                  <Bot className="w-3.5 h-3.5" /> Now on Pro & Elite
+                </div>
+                <h2 className="text-3xl md:text-4xl font-heading font-bold">AI-Powered Tools for Your Practice</h2>
+                <p className="text-muted-foreground leading-relaxed">
+                  Upgrade to Pro or Elite to unlock intelligent client intake chatbots, AI voice assistants, and workflow automation that handles your daily admin — so you can focus on practising law.
+                </p>
+                <div className="space-y-3">
+                  {[
+                    { icon: Bot, label: 'AI Support Chatbot', desc: 'Automate client intake 24/7 — qualify, collect info, and book consultations.' },
+                    { icon: Mic, label: 'AI Voice Assistant', desc: 'Handle inbound client queries by voice, any time of day.' },
+                    { icon: Workflow, label: 'Workflow Automation', desc: 'Automate email management, billing, invoicing, and document workflows.' },
+                  ].map(({ icon: Icon, label, desc }) => (
+                    <div key={label} className="flex items-start gap-3">
+                      <div className="w-9 h-9 bg-violet-100 dark:bg-violet-900/50 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <Icon className="w-4.5 h-4.5 text-violet-600 dark:text-violet-400 w-4 h-4" />
+                      </div>
+                      <div>
+                        <p className="text-sm font-semibold text-foreground">{label}</p>
+                        <p className="text-xs text-muted-foreground">{desc}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <div className="flex flex-col sm:flex-row gap-3 pt-2">
+                  <Button asChild variant="default" className="rounded-xl bg-violet-600 hover:bg-violet-700 text-white shadow-md">
+                    <Link to="/ai-services">Explore AI Tools <ArrowRight className="w-4 h-4 ml-2" /></Link>
+                  </Button>
+                  <Button variant="outline" className="rounded-xl" onClick={() => setFormOpen(true)}>
+                    Apply for Pro or Elite
+                  </Button>
+                </div>
+              </div>
+              <div className="flex-shrink-0 w-full md:w-72">
+                <div className="bg-background rounded-2xl border border-violet-200 dark:border-violet-800 shadow-xl p-6 space-y-4">
+                  <div className="flex items-center gap-3 pb-3 border-b border-border">
+                    <div className="w-9 h-9 bg-violet-100 dark:bg-violet-900 rounded-full flex items-center justify-center">
+                      <Bot className="w-4 h-4 text-violet-600 dark:text-violet-400" />
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold">Monogamy AI</p>
+                      <p className="text-xs text-green-600 font-medium">● Online</p>
+                    </div>
+                  </div>
+                  {[
+                    { side: 'left', text: "Hi! I'm looking for a corporate lawyer in Lagos." },
+                    { side: 'right', text: "I can help with that. What type of matter — M&A, contracts, or compliance?" },
+                    { side: 'left', text: "M&A advisory for our Series A." },
+                    { side: 'right', text: "Great — I've found 3 verified corporate lawyers available this week. Shall I book a call?" },
+                  ].map((msg, i) => (
+                    <div key={i} className={`flex ${msg.side === 'right' ? 'justify-end' : 'justify-start'}`}>
+                      <div className={`max-w-[80%] text-xs px-3 py-2 rounded-xl leading-relaxed ${msg.side === 'right' ? 'bg-violet-600 text-white rounded-br-sm' : 'bg-muted text-foreground rounded-bl-sm'}`}>
+                        {msg.text}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* FINAL CTA */}
         <section className="py-24 bg-primary text-primary-foreground">
           <div className="container-blog text-center space-y-6 max-w-3xl mx-auto">
@@ -435,17 +521,16 @@ const Partners = () => {
               size="lg"
               variant="secondary"
               className="rounded-xl hover:scale-105 transition-transform text-base px-8 shadow-lg"
-              asChild
+              onClick={() => setFormOpen(true)}
             >
-              <Link to="/signup">
-                Start Receiving Clients <ArrowRight className="w-5 h-5 ml-2" />
-              </Link>
+              Start Receiving Clients <ArrowRight className="w-5 h-5 ml-2" />
             </Button>
             <p className="text-sm opacity-70">No risk. Free plan available. Upgrade when you're ready.</p>
           </div>
         </section>
       </main>
 
+      <PartnerLeadForm open={formOpen} onOpenChange={setFormOpen} />
       <Footer />
     </div>
   );

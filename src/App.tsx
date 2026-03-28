@@ -35,6 +35,7 @@ const AttorneyDetail = lazy(() => import("./pages/AttorneyDetail"));
 const BecomeAttorney = lazy(() => import("./pages/BecomeAttorney"));
 const Membership = lazy(() => import("./pages/Membership"));
 const Partners = lazy(() => import("./pages/Partners"));
+const AIServices = lazy(() => import("./pages/AIServices"));
 
 const queryClient = new QueryClient();
 
@@ -57,6 +58,7 @@ const App = () => (
                   <Route path="/become-attorney" element={<BecomeAttorney />} />
                   <Route path="/membership" element={<Membership />} />
                   <Route path="/partners" element={<Partners />} />
+                  <Route path="/ai-services" element={<AIServices />} />
                   <Route path="/posts" element={<AllPosts />} />
                   <Route path="/business" element={<Business />} />
                   <Route path="/technology" element={<Technology />} />
