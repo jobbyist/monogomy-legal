@@ -4,9 +4,11 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { PartnerLeadForm } from '@/components/PartnerLeadForm';
 import {
   TrendingUp, Users, CheckCircle, Star, Shield, Zap,
-  MessageSquare, Globe, ArrowRight, ChevronLeft, ChevronRight, Award, DollarSign
+  MessageSquare, Globe, ArrowRight, ChevronLeft, ChevronRight, Award, DollarSign,
+  Bot, Workflow, Mic
 } from 'lucide-react';
 
 // Placeholder logos (text-based for now — swap with real SVGs in production)
