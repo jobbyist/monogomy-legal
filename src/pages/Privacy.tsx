@@ -107,7 +107,7 @@ const Privacy = () => {
                 <li><strong>Object to Processing:</strong> Object to certain uses of your data</li>
               </ul>
               <p className="mt-4">
-                To exercise these rights, contact us at <a href="mailto:help@cumpani.fun" className="text-primary hover:underline">help@cumpani.fun</a>.
+                To exercise these rights, contact us at <a href="mailto:support@monogamy.legal" className="text-primary hover:underline">support@monogamy.legal</a>.
               </p>
             </section>
 
@@ -135,7 +135,7 @@ const Privacy = () => {
             <section>
               <h2 className="text-2xl font-semibold text-foreground mb-4">10. Contact Us</h2>
               <p>
-                If you have any questions, concerns, or requests regarding this Privacy Policy or your personal information, please contact us at <a href="mailto:help@cumpani.fun" className="text-primary hover:underline">help@cumpani.fun</a>.
+                If you have any questions, concerns, or requests regarding this Privacy Policy or your personal information, please contact us at <a href="mailto:support@monogamy.legal" className="text-primary hover:underline">support@monogamy.legal</a>.
               </p>
             </section>
 
