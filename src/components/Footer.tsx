@@ -17,7 +17,7 @@ const Footer = () => {
                 src="/monogamywht.svg"
                 alt="Monogamy"
                 className="hidden w-[200px] h-auto dark:block"
-              <Link to="/" className="inline-flex" aria-label="Monogamy home">
+              />
             </Link>
             <p className="text-sm text-muted-foreground">
               Monogamy is a legal tech company that was launched in South Africa in 2025 to help businesses and individuals get online legal help at a price they can afford. Monogamy's growing network of highly reputable attorneys and law firms have partnered up to facilitate access to various legal services including personalized legal documents, document review, e-signatures, legal advice, representation in court and more.
