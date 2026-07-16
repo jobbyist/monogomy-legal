@@ -6,6 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Shield, Scale, Users, Award, CheckCircle, BookOpen, Briefcase, GraduationCap } from 'lucide-react';
 import AttorneyCard from '@/components/AttorneyCard';
 import LocationCarousel from '@/components/LocationCarousel';
+import { Pricing } from '@/components/Pricing';
 import { attorneyProfiles } from '@/data/attorneys';
 
 const Index = () => {
@@ -25,13 +26,13 @@ const Index = () => {
                 Africa's Premier Legal Platform
               </div>
               <h1 className="text-5xl md:text-6xl font-heading font-bold text-foreground animate-slide-in leading-tight">
-                Your on-demand legal team —<br className="hidden md:block" /> without the overhead.
+                AI-Powered Legal Protection.<br className="hidden md:block" /> Verified by Real Attorneys.
               </h1>
               <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-                Access a vetted network of licensed attorneys across Africa. Predictable pricing, fast response times, and real legal expertise — exactly when you need it.
+                Monogamy is a legal technology platform. We use proprietary, advanced AI pipelines to handle 95% of the heavy lifting, which is then reviewed, customized, and finalized by licensed, independent partner attorneys. You get top-tier legal protection at a fraction of standard billable rates.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button size="lg" asChild className="hover:scale-105 transition-transform rounded-lg shadow-md">
+                <Button size="lg" asChild className="hover:scale-105 transition-transform rounded-lg shadow-md text-lg px-8">
                   <Link to="/membership">Get Started</Link>
                 </Button>
                 <Button size="lg" variant="outline" asChild className="hover:scale-105 transition-transform rounded-lg">
@@ -58,14 +59,19 @@ const Index = () => {
         {/* Features Section */}
         <section className="py-16 bg-muted/50">
           <div className="container-blog">
-            <h2 className="text-3xl font-heading font-bold text-center mb-12 animate-fade-in">Why Choose Monogamy</h2>
+            <h2 className="text-3xl font-heading font-bold text-center mb-4 animate-fade-in">
+              The Future of Legal Services
+            </h2>
+            <p className="text-center text-muted-foreground max-w-2xl mx-auto mb-12">
+              Advanced AI technology meets independent licensed attorneys
+            </p>
             <div className="grid md:grid-cols-3 gap-8">
               <Card className="hover:shadow-lg transition-all duration-300 animate-scale-in rounded-xl">
                 <CardHeader>
                   <Shield className="w-12 h-12 mb-4 text-primary" />
-                  <CardTitle className="font-heading">Verified Attorneys</CardTitle>
+                  <CardTitle className="font-heading">AI Contract Analysis</CardTitle>
                   <CardDescription>
-                    All legal practitioners are verified, licensed, and in good standing with their respective bar associations.
+                    Our AI instantly scans for loopholes, missing clauses, and jurisdictional compliance issues across South Africa, Kenya, and Nigeria.
                   </CardDescription>
                 </CardHeader>
               </Card>
@@ -73,9 +79,9 @@ const Index = () => {
               <Card className="hover:shadow-lg transition-all duration-300 animate-scale-in rounded-xl" style={{ animationDelay: '0.1s' }}>
                 <CardHeader>
                   <Scale className="w-12 h-12 mb-4 text-primary" />
-                  <CardTitle className="font-heading">Expert Legal Advice</CardTitle>
+                  <CardTitle className="font-heading">Licensed Attorney Review</CardTitle>
                   <CardDescription>
-                    Access specialized legal expertise across multiple practice areas including corporate, criminal, family, and property law.
+                    Every document is reviewed, customized, and approved by independent, verified attorneys in your jurisdiction before delivery.
                   </CardDescription>
                 </CardHeader>
               </Card>
@@ -83,9 +89,9 @@ const Index = () => {
               <Card className="hover:shadow-lg transition-all duration-300 animate-scale-in rounded-xl" style={{ animationDelay: '0.2s' }}>
                 <CardHeader>
                   <Users className="w-12 h-12 mb-4 text-primary" />
-                  <CardTitle className="font-heading">Accessible & Convenient</CardTitle>
+                  <CardTitle className="font-heading">Affordable & Fast</CardTitle>
                   <CardDescription>
-                    Connect with attorneys through our platform for consultations, case management, and ongoing legal support.
+                    Get attorney-approved contracts at a fraction of traditional legal fees. 24-hour turnaround for most documents.
                   </CardDescription>
                 </CardHeader>
               </Card>
@@ -126,9 +132,9 @@ const Index = () => {
                 <div className="w-16 h-16 bg-primary text-primary-foreground rounded-full flex items-center justify-center text-2xl font-bold mx-auto hover:scale-110 transition-transform">
                   1
                 </div>
-                <h3 className="text-xl font-heading font-semibold">Sign Up</h3>
+                <h3 className="text-xl font-heading font-semibold">Choose Your Plan</h3>
                 <p className="text-muted-foreground">
-                  Create your account to browse attorney profiles
+                  Select from Essential, Professional, or Enterprise pricing tiers
                 </p>
               </div>
 
@@ -136,9 +142,9 @@ const Index = () => {
                 <div className="w-16 h-16 bg-primary text-primary-foreground rounded-full flex items-center justify-center text-2xl font-bold mx-auto hover:scale-110 transition-transform">
                   2
                 </div>
-                <h3 className="text-xl font-heading font-semibold">Browse & Select</h3>
+                <h3 className="text-xl font-heading font-semibold">AI Drafts & Analyzes</h3>
                 <p className="text-muted-foreground">
-                  Find the right attorney from our verified network
+                  Our AI creates your document and performs a comprehensive risk audit
                 </p>
               </div>
 
@@ -146,9 +152,9 @@ const Index = () => {
                 <div className="w-16 h-16 bg-primary text-primary-foreground rounded-full flex items-center justify-center text-2xl font-bold mx-auto hover:scale-110 transition-transform">
                   3
                 </div>
-                <h3 className="text-xl font-heading font-semibold">Subscribe</h3>
+                <h3 className="text-xl font-heading font-semibold">Attorney Approves</h3>
                 <p className="text-muted-foreground">
-                  Subscribe to access contact details and consultation booking
+                  A licensed attorney reviews, edits, and officially approves your document
                 </p>
               </div>
 
@@ -156,14 +162,17 @@ const Index = () => {
                 <div className="w-16 h-16 bg-primary text-primary-foreground rounded-full flex items-center justify-center text-2xl font-bold mx-auto hover:scale-110 transition-transform">
                   4
                 </div>
-                <h3 className="text-xl font-heading font-semibold">Connect Securely</h3>
+                <h3 className="text-xl font-heading font-semibold">You're Protected</h3>
                 <p className="text-muted-foreground">
-                  Schedule consultations and manage your legal matters through our secure platform
+                  Download your legally-binding, attorney-sealed document with confidence
                 </p>
               </div>
             </div>
           </div>
         </section>
+
+        {/* Pricing Section */}
+        <Pricing />
 
         {/* Become An Attorney Section */}
         <section className="py-16 bg-gradient-to-r from-primary/10 to-primary/5">
