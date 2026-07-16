@@ -1,5 +1,6 @@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import { Alert, AlertDescription } from '@/components/ui/alert';
 
 const Terms = () => {
   return (
@@ -13,113 +14,186 @@ const Terms = () => {
           </h1>
           
           <div className="prose prose-lg max-w-none text-muted-foreground space-y-8">
+            <Alert className="bg-primary/10 border-primary">
+              <AlertDescription className="text-sm">
+                <strong>Important:</strong> Monogamy.legal is a technology platform, not a law firm. 
+                All legal services are provided by independent, licensed attorneys.
+              </AlertDescription>
+            </Alert>
+
             <section>
               <h2 className="text-2xl font-semibold text-foreground mb-4">1. Acceptance of Terms</h2>
               <p>
-                By accessing and using the Cumpani website and services, you accept and agree to be bound by the terms and provisions of this agreement. These Terms of Service govern your use of our platform, including all features, functionalities, and services provided.
+                By accessing and using the Monogamy.legal platform, you accept and agree to be bound by these Terms of Service. 
+                These terms govern your use of our legal technology platform, including AI-powered document preparation tools 
+                and access to our network of independent legal practitioners.
               </p>
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold text-foreground mb-4">2. Use License</h2>
+              <h2 className="text-2xl font-semibold text-foreground mb-4">2. Nature of Service</h2>
               <p>
-                Permission is granted to access and use Cumpani's platform for personal use in accordance with these Terms. Under this license you may not:
+                <strong>Technology Platform Only:</strong> Monogamy.legal is a legal technology platform that provides:
               </p>
               <ul className="list-disc pl-6 mt-4 space-y-2">
-                <li>Modify, copy, or reproduce platform materials without permission</li>
-                <li>Use the platform for any illegal purpose or solicitation</li>
-                <li>Attempt to gain unauthorized access to any part of the platform</li>
-                <li>Remove any copyright or proprietary notations</li>
-                <li>Misrepresent your identity or provide false information</li>
+                <li>AI-powered document drafting and analysis tools</li>
+                <li>Contract checking and compliance verification systems</li>
+                <li>A marketplace connecting users with independent licensed attorneys</li>
+                <li>Document management and workflow automation</li>
+              </ul>
+              <p className="mt-4">
+                <strong>We Are NOT a Law Firm:</strong> Monogamy.legal does not provide legal advice, practice law, 
+                or represent clients. All legal services, advice, document approvals, and representations are provided 
+                exclusively by independent, licensed legal practitioners who are members of our network.
+              </p>
+            </section>
+
+            <section>
+              <h2 className="text-2xl font-semibold text-foreground mb-4">3. Professional Liability & Indemnity</h2>
+              <p>
+                <strong>Attorney Responsibility:</strong> Professional indemnity insurance and legal liability for all 
+                legal advice, document reviews, and approvals rest solely with the independent attorney who reviews and 
+                signs off on your documents. Each attorney maintains their own professional indemnity insurance as required 
+                by their respective bar associations.
+              </p>
+              <p className="mt-4">
+                <strong>Platform Limitation:</strong> Monogamy.legal's liability is limited to the operation of our 
+                technology platform. We are not liable for legal advice, document content, or professional services 
+                provided by independent attorneys on our network.
+              </p>
+            </section>
+
+            <section>
+              <h2 className="text-2xl font-semibold text-foreground mb-4">4. Service Level Agreements (SLA)</h2>
+              <p>Standard turnaround times by subscription tier:</p>
+              <ul className="list-disc pl-6 mt-4 space-y-2">
+                <li><strong>Essential Plan:</strong> AI analysis (instant), human consultation responses within 48 hours</li>
+                <li><strong>Professional Plan:</strong> Attorney document review and approval within 24 hours</li>
+                <li><strong>Enterprise Plan:</strong> Priority review queue with responses within 12 hours</li>
+              </ul>
+              <p className="mt-4">
+                These are target timeframes. Actual delivery may vary based on document complexity, attorney availability, 
+                and jurisdictional requirements.
+              </p>
+            </section>
+
+            <section>
+              <h2 className="text-2xl font-semibold text-foreground mb-4">5. Subscription Terms & Pricing</h2>
+              <p>
+                Subscription fees are charged monthly in advance. All prices are in South African Rand (ZAR) unless 
+                otherwise specified. By subscribing, you agree to:
+              </p>
+              <ul className="list-disc pl-6 mt-4 space-y-2">
+                <li>Monthly recurring billing until cancellation</li>
+                <li>Usage limits as specified in your chosen plan</li>
+                <li>Enterprise plans require a minimum 3-month commitment</li>
+                <li>No refunds for partial months upon cancellation</li>
               </ul>
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold text-foreground mb-4">3. Age Verification and Eligibility</h2>
+              <h2 className="text-2xl font-semibold text-foreground mb-4">6. Jurisdictional Compliance</h2>
               <p>
-                You must be at least 18 years of age to use Cumpani. By using our services, you represent and warrant that you are of legal age and have the legal capacity to enter into this agreement.
+                Our platform operates in compliance with:
+              </p>
+              <ul className="list-disc pl-6 mt-4 space-y-2">
+                <li><strong>South Africa:</strong> Legal Practice Act 28 of 2014</li>
+                <li><strong>Kenya:</strong> Advocates Act</li>
+                <li><strong>Nigeria:</strong> Legal Practitioners Act</li>
+              </ul>
+              <p className="mt-4">
+                All attorneys on our network are licensed and in good standing with their respective bar associations. 
+                You will only be matched with attorneys licensed in your jurisdiction.
               </p>
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold text-foreground mb-4">4. User Conduct and Community Guidelines</h2>
+              <h2 className="text-2xl font-semibold text-foreground mb-4">7. AI Technology Disclaimer</h2>
               <p>
-                All users agree to conduct themselves in a respectful, professional manner:
+                Our AI-powered tools are designed to assist with document preparation and analysis. However:
               </p>
               <ul className="list-disc pl-6 mt-4 space-y-2">
-                <li>Respect the privacy and boundaries of all cumpanions and clients</li>
-                <li>Maintain honesty in all communications and transactions</li>
-                <li>Not engage in harassment, threats, or inappropriate behavior</li>
-                <li>Comply with all applicable laws and regulations</li>
-                <li>Report any violations or safety concerns immediately</li>
+                <li>AI outputs are NOT legal advice and should not be relied upon without attorney review</li>
+                <li>All AI-generated documents must be reviewed and approved by a licensed attorney before use</li>
+                <li>AI analysis may not catch all issues - human attorney oversight is mandatory</li>
+                <li>We continuously improve our AI, but do not guarantee 100% accuracy</li>
               </ul>
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold text-foreground mb-4">5. Booking and Payment Terms</h2>
+              <h2 className="text-2xl font-semibold text-foreground mb-4">8. User Responsibilities</h2>
               <p>
-                All bookings and payments are processed through our secure virtual wallet system. By making a booking, you agree to:
+                As a user of Monogamy.legal, you agree to:
               </p>
               <ul className="list-disc pl-6 mt-4 space-y-2">
-                <li>Provide accurate payment information</li>
-                <li>Pay the full amount as agreed upon before services are rendered</li>
-                <li>Respect cancellation policies (see our Refund Policy)</li>
-                <li>Not request services beyond those explicitly agreed upon</li>
+                <li>Provide accurate and complete information</li>
+                <li>Not misuse or abuse the platform or AI tools</li>
+                <li>Maintain confidentiality of your account credentials</li>
+                <li>Use documents only after attorney approval</li>
+                <li>Comply with all applicable laws in your jurisdiction</li>
+                <li>Not attempt to circumvent platform security or limits</li>
               </ul>
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold text-foreground mb-4">6. Cumpanion Requirements</h2>
+              <h2 className="text-2xl font-semibold text-foreground mb-4">9. Attorney Network</h2>
               <p>
-                All cumpanions on our platform must:
+                Attorneys on our network are independent contractors, not employees of Monogamy.legal. Each attorney:
               </p>
               <ul className="list-disc pl-6 mt-4 space-y-2">
-                <li>Be verified through our screening process</li>
-                <li>Maintain accurate and current profile information</li>
-                <li>Conduct themselves professionally at all times</li>
-                <li>Report any safety concerns or violations</li>
-                <li>Comply with local laws and regulations</li>
+                <li>Maintains their own professional license and insurance</li>
+                <li>Is solely responsible for their legal advice and services</li>
+                <li>Sets their own service standards within our platform guidelines</li>
+                <li>Must comply with their bar association's rules and ethics</li>
               </ul>
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold text-foreground mb-4">7. Disclaimer</h2>
+              <h2 className="text-2xl font-semibold text-foreground mb-4">10. Data Privacy & Security</h2>
               <p>
-                Cumpani provides a platform connecting clients with cumpanions. We do not employ cumpanions and are not responsible for the services provided. All interactions and agreements are between clients and cumpanions. Cumpani makes no warranties regarding the quality, safety, or legality of services provided by third parties.
+                We take data security seriously. All documents and communications are encrypted. However, you acknowledge 
+                that no system is 100% secure. See our Privacy Policy for detailed information on data handling.
               </p>
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold text-foreground mb-4">8. Limitations of Liability</h2>
+              <h2 className="text-2xl font-semibold text-foreground mb-4">11. Limitation of Liability</h2>
               <p>
-                In no event shall Cumpani be liable for any indirect, incidental, special, consequential, or punitive damages arising from your use of the platform or services. Our total liability shall not exceed the amount paid by you in the past 12 months.
+                To the maximum extent permitted by law, Monogamy.legal's total liability for any claims arising from 
+                platform use shall not exceed the total fees paid by you in the 12 months preceding the claim. We are 
+                not liable for any legal advice, document content, or services provided by independent attorneys.
               </p>
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold text-foreground mb-4">9. Termination</h2>
+              <h2 className="text-2xl font-semibold text-foreground mb-4">12. Termination</h2>
               <p>
-                We reserve the right to terminate or suspend access to our services immediately, without prior notice, for conduct that we believe violates these Terms or is harmful to other users, us, or third parties, or for any other reason.
+                Either party may terminate the subscription at any time. We reserve the right to suspend or terminate 
+                accounts that violate these terms, abuse the platform, or engage in fraudulent activity.
               </p>
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold text-foreground mb-4">10. Changes to Terms</h2>
+              <h2 className="text-2xl font-semibold text-foreground mb-4">13. Governing Law</h2>
               <p>
-                Cumpani may revise these Terms of Service at any time. Continued use of our services after changes constitutes acceptance of the revised terms.
+                These terms are governed by the laws of South Africa. Disputes will be resolved through arbitration 
+                in Johannesburg, South Africa, before resorting to litigation.
               </p>
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold text-foreground mb-4">11. Contact Information</h2>
+              <h2 className="text-2xl font-semibold text-foreground mb-4">14. Contact Information</h2>
               <p>
-                If you have any questions about these Terms of Service, please contact us at <a href="mailto:help@cumpani.fun" className="text-primary hover:underline">help@cumpani.fun</a>.
+                For questions about these Terms of Service, contact us at{' '}
+                <a href="mailto:legal@monogamy.legal" className="text-primary hover:underline">
+                  legal@monogamy.legal
+                </a>.
               </p>
             </section>
 
             <div className="mt-12 pt-8 border-t border-border">
               <p className="text-sm text-muted-foreground">
-                Last updated: January 2026
+                Last updated: January 2025
               </p>
             </div>
           </div>

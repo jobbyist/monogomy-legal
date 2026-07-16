@@ -35,6 +35,11 @@ const AttorneyDetail = lazy(() => import("./pages/AttorneyDetail"));
 const BecomeAttorney = lazy(() => import("./pages/BecomeAttorney"));
 const Membership = lazy(() => import("./pages/Membership"));
 const Partners = lazy(() => import("./pages/Partners"));
+const Templates = lazy(() => import("./pages/Templates"));
+const ClientDashboard = lazy(() => import("./pages/ClientDashboard"));
+const AttorneyDashboard = lazy(() => import("./pages/AttorneyDashboard"));
+const ClientOnboarding = lazy(() => import("./pages/ClientOnboarding"));
+const AttorneyOnboarding = lazy(() => import("./pages/AttorneyOnboarding"));
 
 const queryClient = new QueryClient();
 
@@ -58,6 +63,12 @@ const App = () => (
                   <Route path="/membership" element={<Membership />} />
                   <Route path="/partners" element={<Partners />} />
                   <Route path="/posts" element={<AllPosts />} />
+                  <Route path="/templates" element={<Templates />} />
+                  <Route path="/pricing" element={<Membership />} />
+                  <Route path="/dashboard" element={<ClientDashboard />} />
+                  <Route path="/attorney/dashboard" element={<AttorneyDashboard />} />
+                  <Route path="/client-onboarding" element={<ClientOnboarding />} />
+                  <Route path="/attorney-onboarding" element={<AttorneyOnboarding />} />
                   <Route path="/business" element={<Business />} />
                   <Route path="/technology" element={<Technology />} />
                   <Route path="/podcast" element={<Podcast />} />

@@ -5,6 +5,7 @@ import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { CheckCircle, Zap, Star, Shield, ArrowRight } from 'lucide-react';
+import { analytics } from '@/lib/analytics';
 import CurrencyConverter from '@/components/CurrencyConverter';
 
 type Currency = 'USD' | 'EUR' | 'ZAR' | 'NGN' | 'KES';
@@ -21,66 +22,61 @@ const plans = [
   {
     id: 'essential',
     name: 'Essential',
-    priceUSD: 19.99,
+    priceZAR: 349,
     tagline: 'Affordable legal clarity, on demand.',
-    description: 'Perfect for: Individuals, freelancers, early-stage founders',
+    description: 'Perfect for individuals seeking basic legal protection',
     icon: Zap,
     popular: false,
     features: [
-      'Access to vetted lawyer network (all practice areas)',
-      '2 legal consultations per month (20–30 mins each, chat or call)',
-      'Basic document review (1 document/month, up to 5 pages)',
-      'Standard response time (24–48 hours)',
-      'Access to legal templates library (contracts, NDAs, etc.)',
-      'In-app messaging with matched lawyers',
+      'Unlimited Template Library Downloads',
+      'In-App AI Contract Checker',
+      'Instant AI feedback on uploaded documents',
+      '1 Short Diagnostic Chat (15 mins max) with a lawyer per month',
+      'Email support within 48 hours',
     ],
   },
   {
     id: 'professional',
     name: 'Professional',
-    priceUSD: 49.99,
-    tagline: 'Built for operators who move fast and need legal to keep up.',
+    priceZAR: 899,
+    tagline: 'SMEs, growing startups, serious operators.',
     description: 'Ideal for: SMEs, growing startups, serious operators',
     icon: Star,
     popular: true,
     features: [
       'Everything in Essential, plus:',
-      '5 legal consultations per month (priority booking)',
-      'Faster response time (within 12–24 hours)',
-      'Document review (up to 3 documents/month, 10 pages each)',
-      '1 custom document draft per month (e.g., contract, agreement)',
-      'Dedicated legal concierge (smart matching to best-fit lawyers)',
-      'Discounted hourly rates (10–15% off) for extended work',
-      'Multi-country legal access (cross-border advisory within Africa)',
+      '2 Attorney Consultations per month (20 mins each)',
+      '1 Attorney-Verified Template Customization per month',
+      'AI drafts, partner lawyer reviews and signs off within 24 hours',
+      'Priority email support',
+      'Document version control',
     ],
   },
   {
     id: 'enterprise',
     name: 'Enterprise',
-    priceUSD: 129.99,
-    tagline: 'Full legal infrastructure for serious businesses.',
+    priceZAR: 2399,
+    tagline: 'Established businesses & high-growth startups.',
     description: 'Ideal for: Established businesses, high-growth startups, agencies',
     icon: Shield,
     popular: false,
     features: [
       'Everything in Professional, plus:',
-      'Unlimited consultations (fair use policy)',
-      'Same-day response time (priority queue)',
-      'Unlimited document reviews',
-      '3 custom legal documents per month',
-      'Dedicated account manager (human, not just concierge)',
-      'Legal risk monitoring + proactive alerts (compliance, deadlines, etc.)',
-      '20% discounted rates for complex legal work',
-      'Team access (up to 5 users)',
-      'Quarterly legal strategy session (deep-dive with senior lawyer)',
+      'Multi-user access (up to 5 team members)',
+      '3 Custom Attorney-Approved Drafts/Reviews per month',
+      'Priority response queue (within 12 hours)',
+      'Dedicated account manager',
+      'Custom contract templates',
+      'Advanced analytics and reporting',
     ],
+    disclaimer: 'Requires a minimum 3-month commitment to prevent abuse.',
   },
 ];
 
 const Membership = () => {
   const [currency, setCurrency] = useState<Currency>('USD');
 
-  const fmt = (usd: number) => {
+    const { symbol, rate } = currencyConfig[currency];    
     const { symbol, rate } = currencyConfig[currency];
     const amount = (usd * rate).toLocaleString(undefined, {
       minimumFractionDigits: 2,
@@ -88,6 +84,15 @@ const Membership = () => {
     });
     return `${symbol}${amount}`;
   };
+  const convertFromZAR = (zar: number) => {
+    // Convert from ZAR base to selected currency
+    const zarRate = currencyConfig.ZAR.rate
+    const usdAmount = zar / zarRate
+    const { symbol, rate } = currencyConfig[currency]
+    const converted = (usdAmount * rate).toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })
+    return `${symbol}${converted}`
+  }
+
 
   return (
     <div className="min-h-screen bg-background">
@@ -103,10 +108,14 @@ const Membership = () => {
               Simple, Transparent Pricing
             </div>
             <h1 className="text-4xl md:text-5xl font-heading font-bold text-foreground">
-              Legal coverage that scales with your ambition
+              AI-Powered Legal Services That Scale
             </h1>
             <p className="text-xl text-muted-foreground">
-              No surprise bills. No hourly anxiety. Just the right legal team, always on.
+              Advanced AI technology meets licensed attorney expertise. Get top-tier legal 
+              protection at a fraction of traditional costs. No hidden fees. No surprises.
+            </p>
+            <p className="text-sm text-muted-foreground italic">
+              All prices in ZAR. Convert to your local currency below.
             </p>
           </div>
         </section>
@@ -158,7 +167,7 @@ const Membership = () => {
                         </div>
                         <CardTitle className="font-heading text-xl">{plan.name}</CardTitle>
                       </div>
-                      <div className="mb-2">
+                        <span className="text-4xl font-bold text-foreground">{convertFromZAR(plan.priceZAR)}</span>
                         <span className="text-4xl font-bold text-foreground">{fmt(plan.priceUSD)}</span>
                         <span className="text-muted-foreground text-sm ml-1">/month</span>
                       </div>
@@ -175,6 +184,13 @@ const Membership = () => {
                             <span className={feature.startsWith('Everything') ? 'font-semibold text-foreground' : 'text-muted-foreground'}>
                               {feature}
                             </span>
+                      
+                      {plan.disclaimer && (
+                        <div className="bg-muted/50 p-3 rounded-lg text-xs text-muted-foreground italic border border-border">
+                          * {plan.disclaimer}
+                        </div>
+                      )}
+
                           </li>
                         ))}
                       </ul>
@@ -194,7 +210,10 @@ const Membership = () => {
               })}
             </div>
 
-            <p className="text-center text-sm text-muted-foreground mt-10">
+              <strong>Important:</strong> Monogamy.legal is a technology platform, not a law firm. 
+              All legal advice and document approvals are provided by independent, licensed attorneys. 
+              <br />
+              <span className="font-semibold text-foreground">30-day money-back guarantee</span> · Cancel anytime
               All plans include a <span className="font-semibold text-foreground">30-day money-back guarantee</span>. No contracts. Cancel anytime.
             </p>
           </div>
@@ -219,16 +238,24 @@ const Membership = () => {
                   a: 'Yes. You can change your plan at any time. Upgrades take effect immediately; downgrades apply at the next billing cycle.',
                 },
                 {
-                  q: 'What counts as a "consultation"?',
-                  a: 'A consultation is a scheduled 20–30 minute session with a matched lawyer via chat or call, focused on your specific legal question or matter.',
+                  q: 'How does the AI + attorney process work?',
+                  a: 'Our AI analyzes and drafts your documents in seconds. Then, a licensed attorney in your jurisdiction reviews, customizes, and officially approves it before delivery. You get the speed of AI with the reliability of human expertise.',
+                },
+                {
+                  q: 'Is Monogamy.legal a law firm?',
+                  a: 'No. We are a technology platform. All legal advice, reviews, and approvals are provided by independent, licensed attorneys who are members of our network and maintain their own professional liability insurance.',
+                },
+                {
+                  q: 'What is the turnaround time?',
+                  a: 'Essential: 48 hours for human responses. Professional: 24 hours for attorney reviews. Enterprise: 12 hours priority queue. AI analysis is instant.',
                 },
                 {
                   q: 'Is my data confidential?',
-                  a: 'Absolutely. All communications and documents are encrypted end-to-end. We never share your data with third parties.',
+                  a: 'Absolutely. All communications and documents are encrypted. Attorney-client privilege applies to work done by attorneys on our network.',
                 },
                 {
-                  q: 'What happens if I need more consultations than my plan allows?',
-                  a: 'You can purchase add-on consultations at a discounted rate, or upgrade to a higher plan for better value.',
+                  q: 'Which jurisdictions do you cover?',
+                  a: 'We currently operate in South Africa, Kenya, and Nigeria. All attorneys are licensed and verified in their respective jurisdictions and comply with local bar association requirements.',
                 },
                 {
                   q: 'Which countries are covered?',
@@ -249,10 +276,11 @@ const Membership = () => {
         {/* Final CTA */}
         <section className="py-20 bg-primary text-primary-foreground">
           <div className="container-blog text-center space-y-6 max-w-3xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-heading font-bold">
+              Ready to Transform Your Legal Workflow?
               Stop guessing. Start knowing.
             </h2>
-            <p className="text-lg opacity-90">
+              Join businesses and individuals across Africa using AI-powered legal technology 
+              backed by licensed attorneys. Predictable pricing. Professional quality.
               Join thousands of individuals and businesses across Africa who have replaced unpredictable legal bills with a smart, subscription-based legal team.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
